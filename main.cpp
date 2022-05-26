@@ -155,17 +155,20 @@ int partition_medianOfThree(int numbers[], int i, int k)
 }
 
 void InsertionSort(int numbers[], int numbersSize) {
-    int key = 0;
-    int pos = 0;
-    unsigned i;
+    int val;
+    int i;
+
+    //travels forward in the array, swapping an element i with element j each time i > j
     for (int j = 1; j < numbersSize; j++) {
-        key = numbers[j];
-        for (i = j - 1; i >= 0; i--) {
-            if (numbers[i] <= key)
-                return;
+        val = numbers[j];
+        i = j - 1;
+
+        while(i >= 0 && numbers[i] > val)
+        {
             numbers[i + 1] = numbers[i];
-            pos++;
+            i--;
         }
-        numbers[i + 1] = key;
+        
+        numbers[i + 1] = val;
     }
 }
