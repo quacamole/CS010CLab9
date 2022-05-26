@@ -20,7 +20,7 @@ int main() {
     const int CLOCKS_PER_MS = CLOCKS_PER_SEC/1000; //clock per milliseconds
     clock_t Start = clock();
 //call sort function here
-    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE);
+    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE - 1);
     clock_t End = clock();
     int elapsedTime = (End - Start)/CLOCKS_PER_MS; // converts elapsed time from microseconds to milliseconds.
 
@@ -52,6 +52,18 @@ void Quicksort_medianOfThree(int numbers[], int i, int k){
 
 }
 
-void InsertionSort(int numbers[], int numbersSize){
-
+void InsertionSort(int numbers[], int numbersSize) {
+    int key = 0;
+    int pos = 0;
+    unsigned i;
+    for (unsigned j = 1; j < numbersSize; j++) {
+        key = numbers[j];
+        for (i = j - 1; i >= 0; i--) {
+            if (numbers[i] <= key)
+                return;
+            numbers[i + 1] = numbers[i];
+            pos++;
+        }
+        numbers[i + 1] = key;
+    }
 }
