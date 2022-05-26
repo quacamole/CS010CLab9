@@ -53,5 +53,17 @@ void Quicksort_medianOfThree(int numbers[], int i, int k){
 }
 
 void InsertionSort(int numbers[], int numbersSize){
-
+    int key = 0;
+    int pos = 0;
+    for(unsigned j = 1; j < NUMBER_SIZE; j++)
+    {
+        key=numbers[j];
+        for (unsigned i = j - 1; i >=0; i--)
+        {
+            if (numbers[i] <= key)
+                return;
+            numbers[i+1]=numbers[i];
+            pos++;
+        }
+        numbers[i+1]=key;
 }
