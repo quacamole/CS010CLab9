@@ -6,6 +6,10 @@ void Quicksort_midpoint(int numbers[], int i, int k);
 void Quicksort_medianOfThree(int numbers[], int i, int k);
 void InsertionSort(int numbers[], int numbersSize);
 
+int partition_midpoint(int numbers[], int i, int k);
+int partition_medianOfThree(int numbers[], int i, int k);
+
+
 int main() {
     //generates 3 arrays of integers between 0 and NUMBERS_SIZE
     const int NUMBERS_SIZE = 50000;
@@ -19,9 +23,8 @@ int main() {
 
     const int CLOCKS_PER_MS = CLOCKS_PER_SEC / 1000; //clock per milliseconds
     clock_t Start = clock();
-
-//call sort function here
-    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE - 1);
+    //call sort function here
+    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE);
     clock_t End = clock();
     int elapsedTime = (End - Start) / CLOCKS_PER_MS; // converts elapsed time from microseconds to milliseconds.
 
@@ -64,11 +67,11 @@ int partition_midpoint(int numbers[], int i, int k)
 
     while (!done)
     {
-        while (numbers[i] < numbers[mid])
+        while (numbers[i] < mid)
         {
             i++;
         }
-        while (numbers[k] > numbers[mid])
+        while (numbers[k] > mid)
         {
             k--;
         }
@@ -105,9 +108,7 @@ void Quicksort_medianOfThree(int numbers[], int i, int k) {
 
 int partition_medianOfThree(int numbers[], int i, int k)
 {
-    int mid = numbers[(i + k) / 2];
-    bool done = false;
-
+    int mid = numbers[i + (i + k) / 2];
     int pivot;
 
     if (((numbers[i] > numbers[k]) && numbers[i] < mid) || (numbers[i] > mid && numbers[i] < numbers[k]))
@@ -123,6 +124,7 @@ int partition_medianOfThree(int numbers[], int i, int k)
         pivot = mid;
     }
 
+    bool done = false;
     while (!done)
     {
         while (numbers[i] < pivot)
@@ -156,7 +158,7 @@ void InsertionSort(int numbers[], int numbersSize) {
     int key = 0;
     int pos = 0;
     unsigned i;
-    for (unsigned j = 1; j < numbersSize; j++) {
+    for (int j = 1; j < numbersSize; j++) {
         key = numbers[j];
         for (i = j - 1; i >= 0; i--) {
             if (numbers[i] <= key)
