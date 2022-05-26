@@ -20,7 +20,7 @@ int main() {
     const int CLOCKS_PER_MS = CLOCKS_PER_SEC/1000; //clock per milliseconds
     clock_t Start = clock();
 //call sort function here
-    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE);
+    Quicksort_midpoint(arr1, 0, NUMBERS_SIZE - 1);
     clock_t End = clock();
     int elapsedTime = (End - Start)/CLOCKS_PER_MS; // converts elapsed time from microseconds to milliseconds.
 
